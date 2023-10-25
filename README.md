@@ -16,23 +16,33 @@ Instructions:
    * tqdm
    * scikit-learn
 
-Q1)RNN For Auto-Regressive Models
+# Q1) RNN For Auto-Regressive Models
 
 In this exercise, you are asked to generate an Auto-Regressive model and then create an RNN that predicts it. Generate samples of an Auto-Regressive model of the form** **
 
 X(t) = a1X(t − 1) + a2X(t − 2) + a3X(t − 3) + U(t)** **
 
-where U(t) ∼ Uniform(0,0.1), a1 = 0.6,a2 = −0.5,a3 = −0.2. Generate 2000 training and 2000 test examples using this model. Now train an RNN that predicts the sequence. Apply the training algorithm on new samples and calculate the averaged cost square error cost function.** **
+where,
+
+x = value of time series at time "t"
+
+U(t) ∼ Uniform(0,0.1), 
+
+a1 = 0.6,
+
+a2 = −0.5,
+
+a3 = −0.2. 
+
+Generate 2000 training and 2000 test examples using this model. Now train an RNN that predicts the sequence. Apply the training algorithm on new samples and calculate the averaged cost square error cost function.
 
 Questions:
 
-1. Investigate RNN with 1,2 and 3 hidden layers. Describe the architecture used for the network.** **
-2. Plot the epoch-MSE curve during training.** **
-3. Report MSE (mean square error), MAE (mean absolute error) and R2 (R-square) on the test data.** **
+1. Investigate RNN with 1,2 and 3 hidden layers. Describe the architecture used for the network.
+2. Plot the epoch-MSE curve during training.
+3. Report MSE (mean square error), MAE (mean absolute error) and R2 (R-square) on the test data.
 
-Q2)
-
-Learning Long Term Dependencies [7 Marks]** **
+# Q2) *Learning Long Term Dependencies [7 Marks]*
 
 There are p + 1 input symbols denoted a1,a2,...,ap−1,ap = x, ap+1 = y.** **
 
@@ -42,7 +52,7 @@ A net with p + 1 input units and p + 1 output units sequentially observes input 
 
 To emphasize the long term lag problem, we use a training set consisting of only two sets of sequences:** **
 
-{(x,ai1,ai2,...,aip−1,x) | 1 ≤ i1 ≤ i2 ≤ ... ≤ ip−1 ≤ p − 1}** **
+{(x,ai1,ai2,...,aip−1,x) | 1 ≤ i1 ≤ i2 ≤ ... ≤ ip−1 ≤ p − 1}
 
 and** **
 
