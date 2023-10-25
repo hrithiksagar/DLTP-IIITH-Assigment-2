@@ -44,32 +44,36 @@ Questions:
 
 # Q2) *Learning Long Term Dependencies [7 Marks]*
 
-There are p + 1 input symbols denoted a1,a2,...,ap−1,ap = x, ap+1 = y.** **
+There are p + 1 input symbols denoted a1,a2,...,ap−1,ap = x, ap+1 = y.
 
-ai is represented by p + 1 dimensional vector whose ith component is 1 and all other are 0.** **
+ai is represented by p + 1 dimensional vector whose ith component is 1 and all other are 0.
 
-A net with p + 1 input units and p + 1 output units sequentially observes input symbol sequences, one at a time, trying to predict the next symbols. Error signals occur at every single time steps.** **
+A net with p + 1 input units and p + 1 output units sequentially observes input symbol sequences, one at a time, trying to predict the next symbols. Error signals occur at every single time steps.
 
-To emphasize the long term lag problem, we use a training set consisting of only two sets of sequences:** **
+To emphasize the long term lag problem, we use a training set consisting of only two sets of sequences:
 
 {(x,ai1,ai2,...,aip−1,x) | 1 ≤ i1 ≤ i2 ≤ ... ≤ ip−1 ≤ p − 1}
 
-and** **
+and
 
-{(y,ai1,ai2,...,aip−1,y) | 1 ≤ i1 ≤ i2 ≤ ... ≤ ip−1 ≤ p−1}.** **
+{(y,ai1,ai2,...,aip−1,y) | 1 ≤ i1 ≤ i2 ≤ ... ≤ ip−1 ≤ p−1}.
 
-In this experiment take p = 100. The only totally predictable targets, however, are x and y, which occur at sequence ends. Training sequences are chosen randomly from the two sets with probability 0.5.
+In this experiment take p = 100.
 
-Compare how **RNN** and **LSTM** perform for this prediction problem and Report the following.** **
+The only totally predictable targets, however, are x and y, which occur at sequence ends.
 
-1. Describe the architecture used for LSTM and for RNN. Also mention the activation functions, optimizer and other parameters you choose. Experiment around with multiple architectures and report your observations.** **
-2. Plot the number of input sequences passed through the network versus training error (for both LSTM and RNN).** **
-3. Once the training stops, generate 3000 sequences for test set.** **
-4. Report the average number of wrong predictions on the test set in 10 different trials (for both LSTM and RNN).
+Training sequences are chosen randomly from the two sets with probability 0.5.
+
+Compare how RNN and LSTM perform for this prediction problem and Report the following.
+
+1. Describe the architecture used for LSTM and for RNN. Also mention the activation functions, optimizer and other parameters you choose. Experiment around with multiple architectures and report your observations.
+2. Plot the number of input sequences passed through the network versus training error (for both LSTM and RNN).
+3. Once the training stops, generate 3000 sequences for test set.
+4. **Report the average number of wrong predictions on the test set in 10 different trials (for both LSTM and RNN). **
 
    Example:
 
-   Consider p = 5. Suppose the set of random integers (i1, i2, i3, i4) are {1, 1, 3, 4} respectively.**  **Then, the sequence {(x, i1, i2, i3, i4, x)} will have matrix representation as:** **
+   Consider p = 5. Suppose the set of random integers (i1, i2, i3, i4) are {1, 1, 3, 4} respectively.**  Then, the sequence {(x, i1, i2, i3, i4, x)} will have matrix representation as: **
 
 0 1 1 0 0 0
 
@@ -82,3 +86,26 @@ Compare how **RNN** and **LSTM** perform for this prediction problem and Report 
 1 0 0 0 0 1
 
 0 0 0 0 0 0
+
+Explanation:
+
+Here are some clarifications to the second question:
+
+* \( a_i \) is a 1-hot vector of dimension p+1 with it's \( i^{\text{th}} \) element set to 1.
+* x = \( a_p \) and y = \( a_{p+1} \)
+* There are two types of sequences in the training dataset as mentioned in the pdf, sequences which start with x and end with x and sequences which start with y and end with y.
+* The input to the model will be a p+1 dimensional vector at every timestep and you have to predict the next symbol in the sequence. There are p total timesteps. The input to the sequence at the first timestep will be x/y.
+* The loss is to be calculate only for the last timestep.
+
+Example explanation:
+
+* We have considered p=5. This means x = \( a_p \) = (0, 0, 0, 0, 1, 0) and y = \( a_{p+1} \) =(0, 0, 0, 0, 0, 1).
+* We first have to choose randomly between the sequences of type (x, \( i_1 \), \( i_2 \), \( i_3 \), \( i_4 \), x) and (y, \( i_1 \), \( i_2 \), \( i_3 \), \( i_4 \), y). We have chosen the first type, (x, \( i_1 \), \( i_2 \), \( i_3 \), \( i_4 \), x).
+* We then randomly generate \( i_1 \), \( i_2 \), \( i_3 \), \( i_4 \) following the constraints mentioned in the problem, which turn out to be 1, 1, 3, 4.
+* In the first timestep, we provide x as the input to the network, and it is supposed to predict \( i_1 \).
+* In the second timestep, we provide \( i_1 \) as the input and it is supposed to predict \( i_2 \).
+* In the third timestep, we provide \( i_2 \) as the input and it is supposed to predict \( i_3 \).
+* In the fourth timestep, we provide (\( i_3 \) as the input and it is supposed to predict \( i_4 \).
+* In the fifth and the final timestep, we provide \( i_4 \) as the input and it is supposed to predict x.
+
+If the final prediction is correct, the sequence is considered to be correctly classified.
