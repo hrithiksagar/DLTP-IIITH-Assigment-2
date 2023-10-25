@@ -1,6 +1,10 @@
 # DLTP-IIITH-Assigment-2
 
-Instructions** **
+Subject: CS7.601 Deep Learining: Theory and Practice
+
+Prof: Naresh Manwani
+
+Instructions:
 
 1. Please submit your code for Q1 and Q2 in Jupyter Notebooks. Analysis should be included in the notebook itself using markdown cells. Note that unlike assignment 1, the analysis and reasoning of the results obtained will carry a significant weightage in the marks distribution.
 2. Only the following libraries are allowed:** **
@@ -26,8 +30,7 @@ Questions:
 2. Plot the epoch-MSE curve during training.** **
 3. Report MSE (mean square error), MAE (mean absolute error) and R2 (R-square) on the test data.** **
 
-
-Q2) 
+Q2)
 
 Learning Long Term Dependencies [7 Marks]** **
 
